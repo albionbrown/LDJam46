@@ -49,22 +49,22 @@ function getRenderable(name) {
     return false;
 }
 
-var city1 = new City('London', 100, 100, '/images/city.png', 0, 0);
+var city1 = new City('London', 20, 10, 50, 50, '/images/city.png', 0, 0);
 city1.addWaterMeter(-20, 0);
 city1.addFireMeter(-10, 0);
 city1.addToRenderables();
 
-var city2 = new City('Brighton', 700, 500, '/images/city.png', 0, 0);
-city2.addToRenderables();
+// var city2 = new City('Brighton', 700, 500, '/images/city.png', 0, 0);
+// city2.addToRenderables();
 
-var city3 = new City('Birmingham', 0, 500, '/images/city.png', 0, 0);
-city3.addToRenderables();
+// var city3 = new City('Birmingham', 0, 500, '/images/city.png', 0, 0);
+// city3.addToRenderables();
 
-var city4 = new City('Bristol', 0, 300, '/images/city.png', 0, 0);
-city4.addToRenderables();
+// var city4 = new City('Bristol', 0, 300, '/images/city.png', 0, 0);
+// city4.addToRenderables();
 
-var city5 = new City('Ipswich', 700, 300, '/images/city.png', 0, 0);
-city5.addToRenderables();
+// var city5 = new City('Ipswich', 700, 300, '/images/city.png', 0, 0);
+// city5.addToRenderables();
 
 setInterval(gameLoop, 10);
 
