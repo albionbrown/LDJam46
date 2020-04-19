@@ -29,6 +29,25 @@ class City {
         // TODO rate
         this.fireMeter.setLevel(this.fireMeter.getLevel() + this.fireMeterRate);
         this.waterMeter.setLevel(this.waterMeter.getLevel() + this.waterMeterRate);
+
+        // Check for flooding
+        if (this.waterMeter.getLevel() >= 50) {
+            // flood
+            console.log('Flood!');
+        }
+
+        // Check for a drought
+        if (this.waterMeter.getLevel() <= 0) {
+            // flood
+            console.log('Drought!');
+        }
+
+
+        // Has the city burnt down
+        if (this.fireMeter.getLevel() >= 50) {
+            // fire
+            console.log('Burned!');
+        }
     }
 
     addToRenderables() {
