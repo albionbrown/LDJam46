@@ -13,8 +13,9 @@ class City {
         this.image.src = this.imageSrc;
         this.waterMeter = null;
         this.fireMeter = null;
-        this.waterMeterRate = -0.01;
-        this.fireMeterRate = 0.01;
+        this.waterMeterRate = -1;
+        this.fireMeterRate = 1;
+        this.river = null;
     }
 
     draw() {
@@ -26,9 +27,11 @@ class City {
 
     turn() {
        
+
+
         // TODO rate
         this.fireMeter.setLevel(this.fireMeter.getLevel() + this.fireMeterRate);
-        this.waterMeter.setLevel(this.waterMeter.getLevel() + this.waterMeterRate);
+        this.waterMeter.setLevel(this.waterMeter.getLevel() + this.waterMeterRate + this.river.getFlow());
 
         // Check for flooding
         if (this.waterMeter.getLevel() >= 50) {
@@ -65,5 +68,10 @@ class City {
 
         var fireMeterLevel = 0;
         this.fireMeter = new FireMeter(this.x + x, this.y + y, fireMeterLevel);
+    }
+
+    addRiver(river) {
+
+        this.river = river;
     }
 }
