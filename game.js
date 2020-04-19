@@ -11,7 +11,11 @@ background.src = '/images/background.png';
  * Runs the game
  */
 function gameLoop() {
-    renderables[0].turn();
+     
+    for (let i = 0; i < renderables.length; i++) {
+        let renderable = renderables[i].turn();
+    }
+
     drawAll();
 }
 
