@@ -60,6 +60,10 @@ class River {
 
     getFlow() {
         
+        if (this.broken) {
+            this.flow = 0;
+        }
+
         return this.flow;
     }
 

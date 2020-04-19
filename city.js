@@ -14,8 +14,10 @@ class City {
         this.waterMeter = null;
         this.fireMeter = null;
         this.waterMeterRate = -1;
-        this.fireMeterRate = 1;
+        this.fireMeterRate = 0.5;
         this.river = null;
+        this.onFire = false;
+        this.timeTillNextFire = null;
     }
 
     draw() {
@@ -23,26 +25,49 @@ class City {
         ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height, this.x, this.y, this.width, this.height);
         this.waterMeter.draw();
         this.fireMeter.draw();
+
+        if (this.onFire) {
+
+            // Draw flames
+            console.log("FUUUUCK");
+        }
     }
 
     turn() {
-       
 
+        if (this.onFire) {
 
-        // TODO rate
-        this.fireMeter.setLevel(this.fireMeter.getLevel() + this.fireMeterRate);
+            this.fireMeter.setLevel(this.fireMeter.getLevel() + this.fireMeterRate);
+            this.waterMeterRate = this.waterMeterRate - 2;
+        }
+        else {
+
+            if (this.timeTillNextFire == null) {
+                this.timeTillNextFire = Math.floor(Math.random() * 29) + 10;
+                setTimeout(this.startFire, this.timeTillNextFire * 1000, this);
+            }
+        }
+        
         this.waterMeter.setLevel(this.waterMeter.getLevel() + this.waterMeterRate + this.river.getFlow());
 
         // Check for flooding
         if (this.waterMeter.getLevel() >= 50) {
             // flood
             console.log('Flood!');
+
+            // Start timer
+            // If been going for 5 seconds
+            // cityFlooded()
         }
 
         // Check for a drought
         if (this.waterMeter.getLevel() <= 0) {
             // flood
             console.log('Drought!');
+
+            // Start timer
+            // If been going for 5 seconds
+            // cityDroughted()
         }
 
 
@@ -50,6 +75,10 @@ class City {
         if (this.fireMeter.getLevel() >= 50) {
             // fire
             console.log('Burned!');
+
+            // Start timer
+            // If been going for 5 seconds
+            // cityBurnt()
         }
     }
 
@@ -73,5 +102,24 @@ class City {
     addRiver(river) {
 
         this.river = river;
+    }
+
+    // A setTimeout handler
+    startFire(city) {
+
+        city.onFire = true;
+        city.timeTillNextFire = null;
+    }
+
+    cityFlooded() {
+
+    }
+
+    cityBurnt() {
+
+    }
+
+    cityDroughted() {
+
     }
 }
