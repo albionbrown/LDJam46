@@ -18,6 +18,9 @@ class City {
         this.river = null;
         this.onFire = false;
         this.timeTillNextFire = null;
+        this.fireStartTime = null;
+        this.droughtStartTime = null;
+        this.floodStartTime = null;
     }
 
     draw() {
@@ -73,12 +76,16 @@ class City {
 
         // Has the city burnt down
         if (this.fireMeter.getLevel() >= 50) {
-            // fire
-            console.log('Burned!');
-
+            
             // Start timer
+            if (this.fireStartTime == null) {
+                this.fireStartTime = loopStart;
+            }
+
             // If been going for 5 seconds
-            // cityBurnt()
+            if (loopStart > (this.fireStartTime + 5000)) {
+                this.cityBurnt()
+            }
         }
     }
 
@@ -117,6 +124,7 @@ class City {
 
     cityBurnt() {
 
+        this.image.src = "/images/skull.png"
     }
 
     cityDroughted() {

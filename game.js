@@ -1,6 +1,8 @@
 var background = new Image(800, 600);
 background.src = '/images/background.png';
 
+var loopStart = null;
+
 // renderables.push({ 
 //     name: 'background', 
 //     image: background
@@ -12,6 +14,9 @@ background.src = '/images/background.png';
  */
 function gameLoop() {
      
+    var time = new Date();
+    loopStart = time.getTime();
+
     for (let i = 0; i < renderables.length; i++) {
         let renderable = renderables[i].turn();
     }
