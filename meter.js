@@ -13,10 +13,24 @@ class Meter {
 
     draw() {
 
+        var y = this.y + (this.height - this.level)
+
         ctx.beginPath();
-        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.rect(this.x, y, this.width, this.level);
         ctx.fillStyle = this.colour;
         ctx.fill();
         ctx.closePath();
+    }
+
+    setLevel(level) {
+
+        if (level >= 0 && level <= 50) {
+            this.level = level;
+        }
+    }
+
+    getLevel () {
+
+        return this.level;
     }
 }

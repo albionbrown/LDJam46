@@ -20,6 +20,13 @@ class City {
         this.fireMeter.draw();
     }
 
+    turn() {
+       
+        // TODO rate
+        this.fireMeter.setLevel(this.fireMeter.getLevel() + 0.1);
+       this.waterMeter.setLevel(this.waterMeter.getLevel() - 0.01);
+    }
+
     addToRenderables() {
 
         renderables.push(this);
@@ -27,7 +34,7 @@ class City {
 
     addWaterMeter(x, y) {
 
-        var waterMeterLevel = 50;
+        var waterMeterLevel = 25;
         this.waterMeter = new WaterMeter(this.x + x, this.y + y, waterMeterLevel);
     }
 
