@@ -49,6 +49,9 @@ function getRenderable(name) {
     return false;
 }
 
+var resovoir = new Resovoir(350, 250, 50, 50, '/images/city.png');
+resovoir.addToRenderables();
+
 var city1 = new City('London', 20, 10, 50, 50, '/images/city.png', 0, 0);
 city1.addWaterMeter(-20, 0);
 city1.addFireMeter(-10, 0);

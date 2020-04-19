@@ -19,7 +19,7 @@ class City {
 
     draw() {
 
-        ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height, this.x, this.y, this.x + this.width, this.y + this.height);
+        ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height, this.x, this.y, this.width, this.height);
         this.waterMeter.draw();
         this.fireMeter.draw();
     }
