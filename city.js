@@ -11,6 +11,8 @@ class City {
         this.imageSrc = imageSrc;
         this.image = new Image();
         this.image.src = this.imageSrc;
+        this.fireImage = new Image();
+        this.fireImage.src = "/images/fire.png";
         this.waterMeter = null;
         this.fireMeter = null;
         this.waterMeterRate = -1;
@@ -34,7 +36,7 @@ class City {
         if (this.onFire) {
 
             // Draw flames
-            // ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height, this.x, this.y, this.width, this.height);
+            ctx.drawImage(this.fireImage, 0, 0, this.fireImage.width, this.fireImage.height, this.x, this.y, 20, 20);
         }
     }
 
