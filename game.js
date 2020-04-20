@@ -64,7 +64,7 @@ function getRenderable(name) {
     return false;
 }
 
-var resovoir = new Resovoir((canvas.width / 2) - 50, (canvas.height / 2) - 50, 50, 50, '/images/resovoir.png');
+var resovoir = new Resovoir((canvas.width / 2) - 50, (canvas.height / 2) - 50, 100, 100, '/images/resovoir.png');
 
 var city1 = new City(
     'NorthWestVille', 
