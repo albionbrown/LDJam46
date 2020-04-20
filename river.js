@@ -33,16 +33,51 @@ class River {
     }
 
     draw() {
-        // Matrix transformation
-        // ctx.translate(150, 75);
-        // ctx.rotate(Math.PI / 2);
-        // ctx.translate(-150, -75);
-        ctx.beginPath();
-        ctx.rect(0, 0, this.width, this.length);
+
+        // var sourceX;
+        // var sourceY;
+        // var destX;
+        // var destY;
+
+        // if (this.destX < this.srcX) {
+        //     sourceX = this.destX;
+        //     destX = this.srcX;
+        // }
+        // else {
+        //     sourceX = this.srcX;
+        //     destX = this.destX;
+        // }
+
+        // if (this.destY < this.srcY) {
+        //     sourceY = this.destY;
+        //     destY = this.srcY;
+        // }
+        // else {
+        //     sourceY = this.srcY;
+        //     destY = this.destY;
+        // }
+
+        var centreX = this.srcX + (this.width / 2);
+        // var centreY = sourceY + (this.length / 2);
+        var adjacent = this.srcX - this.destX;
+        var opposite = this.destY - this.srcY;
+
+        var rotation = (Math.atan(opposite / adjacent)) * (180 / Math.PI);
+        
+        console.log("Opposite " + opposite);
+        console.log("Adjacent " + adjacent);
+        console.log("Rotation " + rotation);
+
+        ctx.save();
+
+        ctx.translate(centreX, this.srcY);
+        ctx.rotate(rotation);
+        ctx.translate(-centreX, -this.srcY);
+
         ctx.fillStyle = "#9cd3db";
-        ctx.fill();
-        ctx.closePath();
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.fillRect(800, 600, this.width, this.length);
+
+        ctx.restore();
     }
 
     calculateLength() {

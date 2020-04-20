@@ -160,27 +160,27 @@ class City {
         this.onFire = false;
         this.timeTillNextFire = null;
         this.waterMeterRate = -1;
-        console.log(this.name + " fire extinguished");
+        // console.log(this.name + " fire extinguished");
     }
 
     cityFlooded() {
 
-        this.image.src = "/images/flooded.jpg";
+        this.image.src = "/images/city_flooded.png";
         this.disableCity();
-        console.log(this.name + " flooded!");
+        // console.log(this.name + " flooded!");
     }
 
     cityBurnt() {
 
-        this.image.src = "/images/skull.png";
+        this.image.src = "/images/city_burnt.png";
         this.disableCity();
-        console.log(this.name + " burnt!");
+        // console.log(this.name + " burnt!");
     }
 
     cityDroughted() {
 
+        this.image.src = "/images/city_droughted.png";
         this.disableCity();
-        console.log(this.name + " droughted!");
     }
 
     disableCity() {
