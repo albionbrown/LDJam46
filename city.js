@@ -29,6 +29,9 @@ class City {
 
     draw() {
 
+        ctx.font = "15px Arial";
+        ctx.fillStyle = "#fff";
+        ctx.fillText(this.name, this.x - (this.width / 2), this.y);
         ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height, this.x, this.y, this.width, this.height);
         this.waterMeter.draw();
         this.fireMeter.draw();

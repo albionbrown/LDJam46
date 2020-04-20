@@ -34,11 +34,17 @@ function drawAll() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // var background = getRenderable('background');
-    ctx.drawImage(background, 0, 0);
+    // ctx.drawImage(background, 0, 0);
+    ctx.fillStyle = "#567d46";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < renderables.length; i++) {
         renderables[i].draw();
     }
+
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "#fff";
+    ctx.fillText("Aqua Qaos", 300, 30);
 }
 
 /**
@@ -109,7 +115,7 @@ city2.addToRenderables();
 var city2River = new River(
     resovoir.x + (resovoir.width / 2),
     resovoir.y + (resovoir.height / 2),
-    city2.x + city2.width, 
+    city2.x + city2.width + 20, 
     city2.y + (city2.height / 2), 
     10, 
     false, 
@@ -140,7 +146,7 @@ city3.addToRenderables();
 var city3River = new River(
     resovoir.x + (resovoir.width / 2),
     resovoir.y + (resovoir.height / 2),
-    city3.x + (city3.width / 2),
+    city3.x,
     city3.y, 
     10, 
     false, 
