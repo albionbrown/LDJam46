@@ -59,23 +59,26 @@ class River {
 
         var centreX = this.srcX + (this.width / 2);
         // var centreY = sourceY + (this.length / 2);
-        var adjacent = this.srcX - this.destX;
-        var opposite = this.destY - this.srcY;
+        var adjacent = this.destX - this.srcX;
+        var opposite = -(this.destY - this.srcY);
 
-        var rotation = (Math.atan(opposite / adjacent)) * (180 / Math.PI);
-        
+        var angleRadians = Math.atan(opposite / adjacent);
+        var angleDegrees = angleRadians * (180 / Math.PI);
+        var rotation = 360 + angleDegrees;
+
         console.log("Opposite " + opposite);
         console.log("Adjacent " + adjacent);
-        console.log("Rotation " + rotation);
+        console.log("Angle Radians from horizontal " + angleRadians);
+        console.log("Angle degrees from horizontal " + angleDegrees);
 
         ctx.save();
 
-        ctx.translate(centreX, this.srcY);
+        ctx.translate(this.srcX + (this.width / 2), this.srcY);
         ctx.rotate(rotation);
-        ctx.translate(-centreX, -this.srcY);
+        ctx.translate(-(this.srcX + (this.width / 2)), -this.srcY);
 
         ctx.fillStyle = "#9cd3db";
-        ctx.fillRect(800, 600, this.width, this.length);
+        ctx.fillRect(this.srcX, this.srcY, this.width, this.length);
 
         ctx.restore();
     }
@@ -84,8 +87,8 @@ class River {
 
         var a = this.srcX - this.destX;
         var b = this.srcY - this.destY;
-
-        return Math.sqrt((a * a) + (b * b));
+        var c = Math.pow(a, 2) + Math.pow(b, 2);
+        return Math.sqrt(c);
     }
 
     addToRenderables() {
