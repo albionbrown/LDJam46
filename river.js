@@ -64,7 +64,7 @@ class River {
 
         var angleRadians = Math.atan(opposite / adjacent);
         var angleDegrees = angleRadians * (180 / Math.PI);
-        var rotation = 360 + angleDegrees;
+        var rotation = angleDegrees * (180 / Math.PI);
 
         console.log("Opposite " + opposite);
         console.log("Adjacent " + adjacent);
@@ -73,9 +73,9 @@ class River {
 
         ctx.save();
 
-        ctx.translate(this.srcX + (this.width / 2), this.srcY);
+        ctx.translate(this.srcX, this.srcY);
         ctx.rotate(rotation);
-        ctx.translate(-(this.srcX + (this.width / 2)), -this.srcY);
+        ctx.translate(-(this.srcX), -this.srcY);
 
         ctx.fillStyle = "#9cd3db";
         ctx.fillRect(this.srcX, this.srcY, this.width, this.length);
