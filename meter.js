@@ -24,7 +24,13 @@ class Meter {
 
     setLevel(level) {
 
-        if (level >= 0 && level <= 50) {
+        if (level < 0) {
+            this.level = 0;
+        }
+        else if (level > 50) {
+            this.level = 50;
+        }
+        else { 
             this.level = level;
         }
     }

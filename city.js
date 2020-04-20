@@ -14,13 +14,15 @@ class City {
         this.waterMeter = null;
         this.fireMeter = null;
         this.waterMeterRate = -1;
-        this.fireMeterRate = 0.5;
+        this.fireMeterRate = 1;
         this.river = null;
         this.onFire = false;
+        this.fireInitiated = false;
         this.timeTillNextFire = null;
         this.fireStartTime = null;
         this.droughtStartTime = null;
         this.floodStartTime = null;
+        this.disabled = false;
     }
 
     draw() {
@@ -32,16 +34,30 @@ class City {
         if (this.onFire) {
 
             // Draw flames
-            console.log("FUUUUCK");
+            // ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height, this.x, this.y, this.width, this.height);
         }
     }
 
     turn() {
 
+        if (this.disabled == true) {
+            return;
+        }
+
         if (this.onFire) {
+            
+            if (this.waterMeter.getLevel() >= this.fireMeter.getLevel()) {
+                this.fireMeterRate = -1;
+            }
+            else {
+                this.fireMeterRate = 1;
+            }
 
             this.fireMeter.setLevel(this.fireMeter.getLevel() + this.fireMeterRate);
-            this.waterMeterRate = this.waterMeterRate - 2;
+
+            if (this.fireMeter.getLevel() == 0) {
+                this.stopFire();
+            }
         }
         else {
 
@@ -55,22 +71,40 @@ class City {
 
         // Check for flooding
         if (this.waterMeter.getLevel() >= 50) {
-            // flood
-            console.log('Flood!');
 
-            // Start timer
-            // If been going for 5 seconds
-            // cityFlooded()
+            this.river.setFlow(1);
+
+            if (!this.onFire) {
+                // Start timer
+                if (this.floodStartTime == null) {
+                    this.floodStartTime = loopStart;
+                }
+                // If been going for 5 seconds
+                else if (loopStart > (this.floodStartTime + 5000)) {
+                    this.cityFlooded();
+                }
+            }
+        }
+        else {
+            this.floodStartTime = null;
         }
 
         // Check for a drought
         if (this.waterMeter.getLevel() <= 0) {
-            // flood
-            console.log('Drought!');
+
+            this.river.setFlow(1);
 
             // Start timer
+            if (this.droughtStartTime == null) {
+                this.droughtStartTime = loopStart;
+            }
             // If been going for 5 seconds
-            // cityDroughted()
+            else if (loopStart > (this.droughtStartTime + 5000)) {
+                this.cityDroughted();
+            }
+        }
+        else {
+            this.droughtStartTime = null;
         }
 
 
@@ -81,11 +115,13 @@ class City {
             if (this.fireStartTime == null) {
                 this.fireStartTime = loopStart;
             }
-
             // If been going for 5 seconds
-            if (loopStart > (this.fireStartTime + 5000)) {
-                this.cityBurnt()
+            else if (loopStart > (this.fireStartTime + 5000)) {
+                this.cityBurnt();
             }
+        }
+        else {
+            this.fireStartTime = null;
         }
     }
 
@@ -116,18 +152,39 @@ class City {
 
         city.onFire = true;
         city.timeTillNextFire = null;
+        city.fireMeter.setLevel(50);
+    }
+
+    stopFire() {
+
+        this.onFire = false;
+        this.timeTillNextFire = null;
+        this.waterMeterRate = -1;
+        console.log(this.name + " fire extinguished");
     }
 
     cityFlooded() {
 
+        this.image.src = "/images/flooded.jpg";
+        this.disableCity();
+        console.log(this.name + " flooded!");
     }
 
     cityBurnt() {
 
-        this.image.src = "/images/skull.png"
+        this.image.src = "/images/skull.png";
+        this.disableCity();
+        console.log(this.name + " burnt!");
     }
 
     cityDroughted() {
 
+        this.disableCity();
+        console.log(this.name + " droughted!");
+    }
+
+    disableCity() {
+
+        this.disabled = true;
     }
 }

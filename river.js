@@ -19,7 +19,7 @@ class River {
     }
 
     turn() {
-
+        
         var increaseKey = keys[this.increaseKey];
         var decreaseKey = keys[this.decreaseKey];
 
@@ -79,7 +79,9 @@ class River {
 
     decreaseFlow() {
 
-        this.flow--;
+        if (this.flow > 0) {
+            this.flow--;
+        }
     }
 
     setIncreaseFlowKey(key) {
