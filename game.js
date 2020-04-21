@@ -87,7 +87,8 @@ var city1River = new River(
     city1.y + (city1.height / 2),
     10, 
     false, 
-    1
+    1,
+    125
 );
 
 city1River.addToRenderables();
@@ -98,7 +99,7 @@ city1.addRiver(city1River);
 city1.addToRenderables();
 
 var city2 = new City(
-    'SouthWestVille', 
+    'WestVille', 
     50, 
     300,
     50, 
@@ -118,7 +119,8 @@ var city2River = new River(
     city2.y + (city2.height / 2), 
     10, 
     false, 
-    1
+    1,
+    87
 );
 
 city2River.addToRenderables();
@@ -145,10 +147,11 @@ city3.addFireMeter(-10, 0);
 var city3River = new River(
     resovoir.x + (resovoir.width / 2),
     resovoir.y + (resovoir.height / 2),
-    city3.x,
+    city3.x + (city3.width / 2),
     city3.y + (city3.height / 2), 
     10, 
     false, 
+    1,
     1
 );
 
@@ -160,7 +163,7 @@ city3.addRiver(city3River);
 city3.addToRenderables();
 
 var city4 = new City(
-    'SouthEastVille', 
+    'EastVille', 
     700, 
     300,
     50,
@@ -180,7 +183,8 @@ var city4River = new River(
     city4.y + (city4.height / 2), 
     10, 
     false, 
-    1
+    1,
+    275
 );
 
 city4River.addToRenderables();
@@ -211,7 +215,8 @@ var city5River = new River(
     city5.y + (city5.height / 2),
     10, 
     false, 
-    1
+    1,
+    235
 );
 
 city5River.addToRenderables();

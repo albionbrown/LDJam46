@@ -67,7 +67,7 @@ class City {
         else {
 
             if (this.timeTillNextFire == null) {
-                this.timeTillNextFire = Math.floor(Math.random() * 29) + 10;
+                this.timeTillNextFire = Math.floor(Math.random() * 19) + 5;
                 setTimeout(this.startFire, this.timeTillNextFire * 1000, this);
             }
         }

@@ -1,7 +1,7 @@
 
 class River {
 
-    constructor (srcX, srcY, destX, destY, width, damaged, flow) {
+    constructor (srcX, srcY, destX, destY, width, damaged, flow, rotation) {
 
         this.srcX = srcX;
         this.srcY = srcY;
@@ -11,7 +11,7 @@ class River {
         this.length = this.calculateLength();
         this.damaged = damaged;
         this.flow = flow;
-        this.rotation = null;
+        this.rotation = rotation;
 
         this.increaseKey = null;
         this.decreaseKey = null;
@@ -62,19 +62,19 @@ class River {
         var adjacent = this.destX - this.srcX;
         var opposite = -(this.destY - this.srcY);
 
-        var angleRadians = Math.asin(opposite / this.length);
-        var angleDegrees = angleRadians * (180 / Math.PI) + 90;
-        var rotation = angleDegrees * (Math.PI / 180);
+        // var angleRadians = Math.asin(opposite / this.length);
+        // var angleDegrees = angleRadians * (180 / Math.PI) + 90;
+        // var rotation = angleDegrees * (Math.PI / 180);
 
-        console.log("Opposite " + opposite);
-        console.log("Adjacent " + adjacent);
-        console.log("Angle Radians from horizontal " + angleRadians);
-        console.log("Angle degrees from horizontal " + angleDegrees);
+        // console.log("Opposite " + opposite);
+        // console.log("Adjacent " + adjacent);
+        // console.log("Angle Radians from horizontal " + angleRadians);
+        // console.log("Angle degrees from horizontal " + angleDegrees);
 
         ctx.save();
 
         ctx.translate(this.srcX, this.srcY);
-        ctx.rotate(rotation);
+        ctx.rotate(this.rotation * (Math.PI / 180));
         ctx.translate(-(this.srcX), -this.srcY);
 
         ctx.fillStyle = "#9cd3db";
