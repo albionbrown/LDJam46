@@ -4,6 +4,6 @@ A submission for LD Jam 46 by Josh and Lottie. The aim is to keep the five citie
 
 ## Installation
 
-Clone the git repository and either run a HTTP server or open game.html in a browser.
+Clone the git repository via HTTPS and either run a HTTP server or open game.html in a browser.
 
 Please enjoy!
