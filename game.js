@@ -1,5 +1,5 @@
 var background = new Image(800, 600);
-background.src = '/images/background.png';
+background.src = 'images/background.png';
 
 var loopStart = null;
 
@@ -64,7 +64,7 @@ function getRenderable(name) {
     return false;
 }
 
-var resovoir = new Resovoir((canvas.width / 2) - 50, (canvas.height / 2) - 50, 100, 100, '/images/resovoir.png');
+var resovoir = new Resovoir((canvas.width / 2) - 50, (canvas.height / 2) - 50, 100, 100, 'images/resovoir.png');
 
 var city1 = new City(
     'NorthWestVille', 
@@ -72,7 +72,7 @@ var city1 = new City(
     50, 
     50, 
     50, 
-    '/images/city.png', 
+    'images/city.png', 
     0, 
     0
 );
@@ -104,7 +104,7 @@ var city2 = new City(
     300,
     50, 
     50, 
-    '/images/city.png', 
+    'images/city.png', 
     0, 
     0
 );
@@ -136,7 +136,7 @@ var city3 = new City(
     500, 
     50, 
     50, 
-    '/images/city.png', 
+    'images/city.png', 
     0, 
     0
 );
@@ -168,7 +168,7 @@ var city4 = new City(
     300,
     50,
     50, 
-    '/images/city.png',
+    'images/city.png',
     0, 
     0
 );
@@ -200,7 +200,7 @@ var city5 = new City(
     50, 
     50, 
     50, 
-    '/images/city.png', 
+    'images/city.png', 
     0, 
     0
 );
