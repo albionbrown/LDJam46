@@ -12,7 +12,7 @@ class City {
         this.image = new Image();
         this.image.src = this.imageSrc;
         this.fireImage = new Image();
-        this.fireImage.src = "/images/fire.png";
+        this.fireImage.src = "images/fire.png";
         this.waterMeter = null;
         this.fireMeter = null;
         this.waterMeterRate = -1;
@@ -170,21 +170,21 @@ class City {
 
     cityFlooded() {
 
-        this.image.src = "/images/city_flooded.png";
+        this.image.src = "images/city_flooded.png";
         this.disableCity();
         // console.log(this.name + " flooded!");
     }
 
     cityBurnt() {
 
-        this.image.src = "/images/city_burnt.png";
+        this.image.src = "images/city_burnt.png";
         this.disableCity();
         // console.log(this.name + " burnt!");
     }
 
     cityDroughted() {
 
-        this.image.src = "/images/city_droughted.png";
+        this.image.src = "images/city_droughted.png";
         this.disableCity();
     }
 
