@@ -16,60 +16,47 @@ class River {
         this.increaseKey = null;
         this.decreaseKey = null;
         this.repairKey = null;
+
+        this.timeTillNextBreak = null;
+        this.normalColour = "#9cd3db";
+        this.damagedColour = '#696969';
     }
 
     turn() {
         
         var increaseKey = keys[this.increaseKey];
         var decreaseKey = keys[this.decreaseKey];
+        var repairKey   = keys[this.repairKey];
 
-        if (increaseKey.pressed) {
-            this.increaseFlow();
+        if (this.damaged) {
+
+            if (repairKey.pressed) {
+                this.damaged = false;
+            }
         }
+        else {
 
-        if (decreaseKey.pressed) {
-            this.decreaseFlow();
+            if (this.timeTillNextBreak == null) {
+                this.timeTillNextBreak = Math.floor(Math.random() * 29) + 10;
+                setTimeout(this.break, this.timeTillNextBreak * 1000, this);
+            }
+
+            if (increaseKey.pressed) {
+                this.increaseFlow();
+            }
+    
+            if (decreaseKey.pressed) {
+                this.decreaseFlow();
+            }
         }
     }
 
     draw() {
 
-        // var sourceX;
-        // var sourceY;
-        // var destX;
-        // var destY;
-
-        // if (this.destX < this.srcX) {
-        //     sourceX = this.destX;
-        //     destX = this.srcX;
-        // }
-        // else {
-        //     sourceX = this.srcX;
-        //     destX = this.destX;
-        // }
-
-        // if (this.destY < this.srcY) {
-        //     sourceY = this.destY;
-        //     destY = this.srcY;
-        // }
-        // else {
-        //     sourceY = this.srcY;
-        //     destY = this.destY;
-        // }
-
         var centreX = this.srcX + (this.width / 2);
         // var centreY = sourceY + (this.length / 2);
         var adjacent = this.destX - this.srcX;
         var opposite = -(this.destY - this.srcY);
-
-        // var angleRadians = Math.asin(opposite / this.length);
-        // var angleDegrees = angleRadians * (180 / Math.PI) + 90;
-        // var rotation = angleDegrees * (Math.PI / 180);
-
-        // console.log("Opposite " + opposite);
-        // console.log("Adjacent " + adjacent);
-        // console.log("Angle Radians from horizontal " + angleRadians);
-        // console.log("Angle degrees from horizontal " + angleDegrees);
 
         ctx.save();
 
@@ -77,7 +64,13 @@ class River {
         ctx.rotate(this.rotation * (Math.PI / 180));
         ctx.translate(-(this.srcX), -this.srcY);
 
-        ctx.fillStyle = "#9cd3db";
+        if (this.damaged) {
+            ctx.fillStyle = this.damagedColour;
+        }
+        else {
+            ctx.fillStyle = this.normalColour;      
+        }
+
         ctx.fillRect(this.srcX, this.srcY, (this.flow) * 2 + 10, this.length);
 
         ctx.restore();
@@ -135,5 +128,10 @@ class River {
     setDecreaseFlowKey(key) {
 
         this.decreaseKey = key;
+    }
+
+    break(river) {
+
+        river.damaged = true;
     }
 }
